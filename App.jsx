@@ -7,10 +7,12 @@ class App extends React.Component {
 
       this.state = {
          boardData: [
-            [' ', 'X', 'X'],
-            ['X', 'X', ' '],
-            [' ', 'X', ' ']
-         ]
+            ['\u00A0', '\u00A0', '\u00A0'],
+            ['\u00A0', '\u00A0', '\u00A0'],
+            ['\u00A0', '\u00A0', '\u00A0']
+         ],
+         currentPlayer: 0,
+         playerNames: ['', '']
       }
    }
 
@@ -52,26 +54,32 @@ class Content extends React.Component {
 
 class Board extends React.Component {
    render() {
+
+      var cellStyle = {
+         textAlign: 'center',
+         fontSize: '75px',
+         fontWeigth: 'bold',
+         border: '2px solid black'
+      };
+
       return (
-         <div className="table table-bordered">
-            <tbody>
-               <tr>
-                  <td>{this.props.data[0][0]}</td>
-                  <td>{this.props.data[0][1]}</td>
-                  <td>{this.props.data[0][2]}</td>
-               </tr>
-               <tr>
-                  <td>{this.props.data[1][0]}</td>
-                  <td>{this.props.data[1][1]}</td>
-                  <td>{this.props.data[1][2]}</td>
-               </tr>
-               <tr>
-                  <td>{this.props.data[2][0]}</td>
-                  <td>{this.props.data[2][1]}</td>
-                  <td>{this.props.data[2][2]}</td>
-               </tr>
-            </tbody>
-         </table>
+         <div className="container-fluid">
+            <div className="row">
+               <div className="col-md-4" style={cellStyle}>{this.props.data[0][0]}</div>
+               <div className="col-md-4" style={cellStyle}>{this.props.data[0][1]}</div>
+               <div className="col-md-4" style={cellStyle}>{this.props.data[0][2]}</div>
+            </div>
+            <div className="row">
+               <div className="col-md-4" style={cellStyle}>{this.props.data[1][0]}</div>
+               <div className="col-md-4" style={cellStyle}>{this.props.data[1][1]}</div>
+               <div className="col-md-4" style={cellStyle}>{this.props.data[1][2]}</div>
+            </div>
+            <div className="row">
+               <div className="col-md-4" style={cellStyle}>{this.props.data[2][0]}</div>
+               <div className="col-md-4" style={cellStyle}>{this.props.data[2][1]}</div>
+               <div className="col-md-4" style={cellStyle}>{this.props.data[2][2]}</div>
+            </div>
+         </div>
       );
    }
 }

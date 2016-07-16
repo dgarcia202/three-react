@@ -15,52 +15,32 @@ class App extends React.Component {
          playerNames: ['', '']
       }
 
-      this.processBoardClick = this.processBoardClick.bind(this);
+      this.onBoardClick = this.onBoardClick.bind(this);
    }
 
-   processBoardClick(x, y) {
-         console.log('cliec!')
+   onBoardClick(x, y) {
+         console.log('click!')
          this.state.boardData[x][y] = this.state.currentPlayer == 0 ? 'X' : 'O';
+         this.setState({ boardData: this.state.boardData });
    }
 
    render() {
       return (
          <div>
-            <Header/>
-            <Content appState={this.state} onBoardClick={this.processBoardClick}/>
-         </div>
-      );
-   }
-}
-
-class Header extends React.Component {
-   render() {
-      return (
-         <div>
-            <h1>Three in a row</h1>
-         </div>
-      );
-   }
-}
-
-class Content extends React.Component {
-
-   constructor(props) {
-      super(props);
-   }
-
-   render() {
-      return (
-         <div className="container-fluid">
-            <div className="row">
-               <div className="col-md-8">
-                  <Board 
-                     data={this.props.appState.boardData} 
-                     currentPlayer={this.props.appState.currentPlayer} 
-                     onBoardClick={this.props.onBoardClick} />
+            <div>
+               <h1>Three in a row</h1>
+            </div>
+            <div className="container-fluid">
+               <div className="row">
+                  <div className="col-md-8">
+                     <Board 
+                        data={this.state.boardData} 
+                        currentPlayer={this.state.currentPlayer} 
+                        onBoardClick={this.onBoardClick} />
+                  </div>
+                  <div className="col-md-4">
+                  </div>               
                </div>
-               <div className="col-md-4">
-               </div>               
             </div>
          </div>
       );
@@ -96,8 +76,8 @@ class Board extends React.Component {
             </div>
             <div className="row">
                <div onClick={x => this.props.onBoardClick(2, 0)} className="col-md-4" style={cellStyle}>{this.props.data[2][0]}</div>
-               <div onClick={x => this.props.onBoardClick(2, 0)} className="col-md-4" style={cellStyle}>{this.props.data[2][1]}</div>
-               <div onClick={x => this.props.onBoardClick(2, 0)} className="col-md-4" style={cellStyle}>{this.props.data[2][2]}</div>
+               <div onClick={x => this.props.onBoardClick(2, 1)} className="col-md-4" style={cellStyle}>{this.props.data[2][1]}</div>
+               <div onClick={x => this.props.onBoardClick(2, 2)} className="col-md-4" style={cellStyle}>{this.props.data[2][2]}</div>
             </div>
          </div>
       );

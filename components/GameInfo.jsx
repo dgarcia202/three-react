@@ -16,7 +16,7 @@ class GameInfo extends React.Component {
             </div>
             <div className="row">
                <div className="col-md-12">
-                  <button type="button" className="btn btn-primary">Reset Game</button>
+                  <button type="button" className="btn btn-primary" onClick={this.props.onResetGame}>Reset Game</button>
                </div>
             </div>            
          </div>         

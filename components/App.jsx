@@ -8,26 +8,30 @@ class App extends React.Component {
       super(props);
 
       this.state = {
-         boardData: [
-            ['\u00A0', '\u00A0', '\u00A0'],
-            ['\u00A0', '\u00A0', '\u00A0'],
-            ['\u00A0', '\u00A0', '\u00A0']
-         ],
+         boardData: [['\u00A0', '\u00A0', '\u00A0'], ['\u00A0', '\u00A0', '\u00A0'], ['\u00A0', '\u00A0', '\u00A0']],
          currentPlayer: 0,
          playerNames: ['PlayerA', 'PlayerB']
-      }
+      };
 
+      this.onResetGame = this.onResetGame.bind(this);
       this.onBoardClick = this.onBoardClick.bind(this);
    }
 
-   onBoardClick(x, y) {
-         this.state.boardData[x][y] = this.state.currentPlayer == 0 ? 'X' : 'O';
-         this.state.currentPlayer = this.state.currentPlayer == 0 ? 1 : 0;
+   onResetGame() {
+      this.setState({ 
+         boardData: [['\u00A0', '\u00A0', '\u00A0'], ['\u00A0', '\u00A0', '\u00A0'], ['\u00A0', '\u00A0', '\u00A0']],
+         currentPlayer: 0
+      });      
+   }
 
-         this.setState({ 
-            boardData: this.state.boardData,
-            currentPlayer: this.state.currentPlayer
-         });
+   onBoardClick(x, y) {
+      this.state.boardData[x][y] = this.state.currentPlayer == 0 ? 'X' : 'O';
+      this.state.currentPlayer = this.state.currentPlayer == 0 ? 1 : 0;
+
+      this.setState({ 
+         boardData: this.state.boardData,
+         currentPlayer: this.state.currentPlayer
+      });
    }
 
    render() {
@@ -45,7 +49,9 @@ class App extends React.Component {
                         onBoardClick={this.onBoardClick} />
                   </div>
                   <div className="col-md-6">
-                     <GameInfo playerName={this.state.playerNames[this.state.currentPlayer]} />
+                     <GameInfo 
+                        playerName={this.state.playerNames[this.state.currentPlayer]}
+                        onResetGame={this.onResetGame} />
                   </div>               
                </div>
             </div>
